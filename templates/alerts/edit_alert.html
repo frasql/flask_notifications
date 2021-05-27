@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    
+    <title>Notification App</title>
+</head>
+<body>
+    <header></header>
+    <section class="section">
+      <form class="form" method="POST" action="{{ url_for('alerts.new') }}">
+        <div class="field">
+            <label class="label">Alert name</label>
+            <div class="control">
+              <input class="input" type="text" name="alert_name">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input class="input" type="text" name="title">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <input class="input" type="text" name="description">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">End Time</label>
+            <div class="control">
+              <input class="input" type="datetime" name="end_time">
+            </div>
+          </div>
+          <button class="button is-grey" type="submit">Invia</button>
+      </form>
+
+    </section>
+    
+</body>
+</html>
