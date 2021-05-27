@@ -73,14 +73,35 @@
   </header>  
   <section class="section">
       <div class="container">
-          <ol>
             {% if alerts %}
               {% for alert in alerts %}
-                <li>{{alert.name}}</li>
+                  <div class="card" style="margin-top: 3em;">
+                    <header class="card-header">
+                      <p class="card-header-title">
+                        {{ alert.note.title }}
+                      </p>
+                      <button class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                          <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                      </button>
+                    </header>
+                    <div class="card-content">
+                      <div class="content">
+                        {{ alert.note.description }}
+                        <br>
+                        <time datetime="2016-1-1">{{ alert.note.end_time }}</time>
+                      </div>
+                    </div>
+                    <footer class="card-footer">
+                      <a href="#" class="card-footer-item">Save</a>
+                      <a href="#" class="card-footer-item">Edit</a>
+                      <a href="#" class="card-footer-item">Delete</a>
+                    </footer>
+                  </div>
               {% endfor %}
             {% else %}
             {% endif %}
-          </ol>
       </div>
   </section>
 </body>
