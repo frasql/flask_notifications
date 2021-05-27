@@ -42,9 +42,6 @@ class Model(metaclass=ABCMeta):
 
     @classmethod
     def find_many_by(cls: Type[T], attribute: str, value: str) -> List[T]: # find_one_by("name": "username")
-        try:
-            data = [cls(**elem) for elem in Database.find_one(cls.collection, {attribute: value})]
-            return data
-        except Exception:
-            return None
+        return [cls(**elem) for elem in Database.find(cls.collection, {attribute: value})]
+
         

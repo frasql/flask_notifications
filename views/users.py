@@ -9,6 +9,7 @@ user_blueprint = Blueprint("users", __name__)
 
 
 @user_blueprint.route("/homepage/", methods=["GET"])
+@login_required
 def homepage():
     return render_template("users/homepage.html")
 

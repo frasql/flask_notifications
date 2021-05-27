@@ -10,12 +10,14 @@ alert_blueprint = Blueprint("alerts", __name__)
 
 
 @alert_blueprint.route("/")
+@login_required
 def index():
     alerts = Alert.find_many_by("user_email", session["email"])
     return render_template("alerts/index.html", alerts=alerts)
 
 
 @alert_blueprint.route("/new/", methods=["GET", "POST"])
+@login_required
 def new_alert():
     if request.method == 'POST':
         alert_name = request.form.get("alert_name")
@@ -41,6 +43,7 @@ def new_alert():
 
 
 @alert_blueprint.route("/edit/<string:alert_id>/", methods=["GET", "POST"])
+@login_required
 def edit_alert(alert_id):
     alert = Alert.get_by_id(alert_id)
 
@@ -56,6 +59,7 @@ def edit_alert(alert_id):
 
  
 @alert_blueprint.route("/delete/<string:alert_id>")
+@login_required
 def delete_alert(alert_id):
     alert = Alert.get_by_id(alert_id)
     if alert.user_email == session["email"]:

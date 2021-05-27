@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/alerts/alert.css') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-  
-    <title>Login</title>
+    
+    <title>Notification App</title>
 </head>
 <body>
   <header>
@@ -30,7 +28,7 @@
     
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="{{ url_for('main_root.landing_page') }}">
+          <a class="navbar-item" href="{{ url_for('users.homepage') }}">
             Home
           </a>
     
@@ -72,30 +70,18 @@
         </div>
       </div>
     </nav>
-    <div class="container" style="width:100%;">
-    {% for category, message in get_flashed_messages(with_categories=True) %}
-      <div class="alert-{{category}} flash-container">Message: {{ message }}</div>
-    {% endfor %}
-    </div>
-    
-  </header>
+  </header>  
   <section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="row">
-          <div class="column is-6-desktop">
-            <h2 class="title">Create an alert</h2>
-            <a class="button" href="{{ url_for('alerts.new_alert') }}">create alert</a>
-          </div>
-          <div class="column is-6-desktop">
-            <h2 class="title">Show alerts</h2>
-            <a class="button" href="{{ url_for('alerts.index') }}">show alerts</a>
-          </div>
-        </div>
+      <div class="container">
+          <ol>
+            {% if alerts %}
+              {% for alert in alerts %}
+                <li>{{alert.name}}</li>
+              {% endfor %}
+            {% else %}
+            {% endif %}
+          </ol>
       </div>
-    </div>
   </section>
-
-    
 </body>
 </html>
