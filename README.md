@@ -10,6 +10,7 @@
 ## Installation
 
 * pip3 install -r /path/to/requirements.txt
+* python3 app.py
 
 
 ## Usage
@@ -21,15 +22,15 @@
 
 ### Content
 
-* User register / login / logout --> flask session
-* User model --> abstract interface model, dataclasses
+* User register / login / logout --> flask session.
+* User model --> abstract interface model, dataclasses.
+* Application Database --> MongoDB with pymongo driver.
 
 
 ### Future Implementation
 
 * Frontend in pure javascript
 * Authenctication with flask_jwt_extended
-
 
 ### Testing
 
