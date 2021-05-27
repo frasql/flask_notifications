@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, request, redirect, session
+from flask import Blueprint, render_template, url_for, request, redirect, session, flash
 from models.alert import Alert
 from models.note import Note
 from apputils.utils import Utils
@@ -33,6 +33,9 @@ def new_alert():
         note.save_to_mongo()
 
         Alert(alert_name, note._id, session["email"]).save_to_mongo()
+        
+        flash(f"Alert created successfully at {end_time} with title: {title}", "info")
+        return redirect(url_for("users.homepage"))
     
     return render_template("alerts/new_alert.html")
 

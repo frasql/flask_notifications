@@ -2,9 +2,15 @@ from apputils.utils import Utils
 from flask import Blueprint, session, render_template, redirect, request, url_for
 from models.users.user import User
 import models.users.errors as UserErrors
+from models.users.decorators import login_required
 
 
 user_blueprint = Blueprint("users", __name__)
+
+
+@user_blueprint.route("/homepage/", methods=["GET"])
+def homepage():
+    return render_template("users/homepage.html")
 
 @user_blueprint.route("/register/", methods=["GET", "POST"])
 def register():
@@ -15,7 +21,7 @@ def register():
         try:
             User.register_user(email, password)
             session["email"] = email
-            return email
+            return redirect(url_for(".homepage"))
         except UserErrors.UserError as e:
             return e.message
 
@@ -31,7 +37,7 @@ def login():
         try:
             if User.is_login_valid(email, password):
                 session["email"] = email
-                return email
+                return redirect(url_for(".homepage"))
         except UserErrors.UserError as e:
             return e.message
 
@@ -39,6 +45,7 @@ def login():
 
 
 @user_blueprint.route('/logout/')
+@login_required
 def logout():
     session['email'] = None
-    return redirect(url_for('.user_login'))
+    return redirect(url_for('main_root.landing_page'))

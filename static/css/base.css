@@ -1,0 +1,10 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.nav-icon {
+    font-size: 3em; 
+    color: rgb(191, 255, 71);
+}
