@@ -11,7 +11,9 @@ user_blueprint = Blueprint("users", __name__)
 @user_blueprint.route("/homepage/", methods=["GET"])
 @login_required
 def homepage():
-    return render_template("users/homepage.html")
+    user_email = session["email"]
+    email = user_email.split("@")[0]
+    return render_template("users/homepage.html", email=email)
 
 @user_blueprint.route("/register/", methods=["GET", "POST"])
 def register():

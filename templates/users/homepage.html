@@ -10,7 +10,7 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   
-    <title>Login</title>
+    <title>Homepage</title>
 </head>
 <body>
   <header>
@@ -30,7 +30,7 @@
     
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="{{ url_for('main_root.landing_page') }}">
+          <a class="navbar-item" href="{{ url_for('users.homepage') }}">
             Home
           </a>
     
@@ -79,6 +79,11 @@
     </div>
     
   </header>
+  <section class="section">
+    <div class="container">
+      <h1>Welcome {{ email | capitalize }}</h1>
+    </div>
+  </section>
   <section class="section">
     <div class="container">
       <div class="columns">
