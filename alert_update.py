@@ -6,9 +6,10 @@ alerts = Alert.all()
 
 
 for alert in alerts:
-    alert.notify_if_time_elapsed()
-    notification = alert.json()
-    print("ciao")
+    if alert.notify_if_time_elapsed():
+        print(alert)
+    else:
+      pass
     """
     html_content = f"
     <div>

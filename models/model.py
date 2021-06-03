@@ -43,5 +43,3 @@ class Model(metaclass=ABCMeta):
     @classmethod
     def find_many_by(cls: Type[T], attribute: str, value: str) -> List[T]: # find_one_by("name": "username")
         return [cls(**elem) for elem in Database.find(cls.collection, {attribute: value})]
-
-        

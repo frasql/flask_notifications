@@ -7,6 +7,7 @@ from models.note import Note
 from models.model import Model
 from models.users.user import User
 import models.users.errors as UserErrors
+from apputils.utils import Utils
 
 
 @dataclass(eq=False)
@@ -33,8 +34,10 @@ class Alert(Model):
 
 
     def notify_if_time_elapsed(self):
-        current_time = datetime.utcnow()
-        if current_time > self.note.end_time:
-            print("opoooooooooooops")
+        current_time = datetime.now().isoformat(' ', 'seconds')
+        if current_time > Utils.string_to_datetime(self.note.end_time):
+            return True
+        return False
+            
 
 

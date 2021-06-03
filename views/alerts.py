@@ -23,13 +23,14 @@ def new_alert():
         alert_name = request.form.get("alert_name")
         title = request.form.get("title")
         description = request.form.get("description")
-        start_time = datetime.datetime.utcnow()
+        start_time = datetime.datetime.now().isoformat(' ', 'seconds')
         end_time = request.form.get("end_time")
         
         try:
+            
             end_time = Utils.string_to_datetime(end_time)
-        except TypeError:
-            raise TypeError("Unable to convert end time to datetime object")
+        except TypeError as e:
+            raise TypeError(f"Unable to convert end time to datetime object {e}")
 
         note = Note(title, description, start_time, end_time)
         note.save_to_mongo()
@@ -46,14 +47,14 @@ def new_alert():
 @login_required
 def edit_alert(alert_id):
     alert = Alert.get_by_id(alert_id)
-
+    note = Note.get_by_id(alert.note_id)
+    
     if request.method == "POST":
         end_time = request.form.get("end_time")
+        str_end_time = Utils.string_to_datetime(end_time)
         # change alert price
-        alert.note.end_time = datetime.datetime.strptime(end_time, '%Y-%m-%dT%H:%M')
-
-        alert.save_to_mongo()
-
+        note.end_time = str_end_time
+        note.save_to_mongo()
         return redirect(url_for(".index"))
     return render_template("alerts/edit_alert.html", alert=alert)
 

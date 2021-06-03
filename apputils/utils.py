@@ -38,11 +38,12 @@ class Utils(object):
         return True
     
     @staticmethod
-    def string_to_datetime(str_datetime, format="%Y-%m-%dT%H:%M"):
-        return datetime.datetime.strptime(str_datetime, format)
-    
+    def string_to_datetime(str_datetime, format="%Y-%m-%d %H:%M:%S"):
+        date_obj = datetime.datetime.strptime(str_datetime, format)
+        return date_obj.isoformat(' ', 'seconds')
+        
     @staticmethod
-    def datetime_to_string(datetime_obj, format="%Y-%m-%dT%H:%M"):
+    def datetime_to_string(datetime_obj, format="%Y-%m-%d %H:%M:%S"):
             return datetime.datetime.strftime(datetime_obj, format)
 
 

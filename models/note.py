@@ -21,8 +21,7 @@ class Note(Model):
             "_id": self._id,
             "title": self.title,
             "description": self.description,
-            "start_time": Utils.datetime_to_string(self.start_time),
-            "end_time": Utils.datetime_to_string(self.end_time)
+            "start_time": self.start_time,
+            "end_time": self.end_time
         }
-
 
