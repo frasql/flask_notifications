@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing_page.css') }}">
+
 </head>
 <body>
     <header>
@@ -28,19 +29,19 @@
           <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
               <a class="navbar-item" href="{{ url_for('main_root.landing_page') }}">
-                Home
+                <span class="nav-item-text">Home</span>
               </a>
         
-              <a class="navbar-item">
-                Documentation
+              <a class="navbar-item" href="{{ url_for('users.homepage') }}">
+                <span class="nav-item-text">Profile</span>
               </a>
         
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
-                  More
+                  <span class="nav-item-text">More</span>
                 </a>
         
-                <div class="navbar-dropdown">
+                <div class="navbar-dropdown has-text-white" style="color: white;" >
                   <a class="navbar-item">
                     About
                   </a>
@@ -75,7 +76,83 @@
             </div>
           </div>
         </nav>
-      </header>
+        {% if get_flashed_messages() %}
+        <div class="container" style="width:100%;" id="flash_messages">
+          {% for category, message in get_flashed_messages(with_categories=True) %}
+            <div class="alert-{{category}} flash-container">Message: {{ message }}</div>
+            <a class="close" id="close_flash">×</a>
+          {% endfor %}
+          </div>
+        {% else %}
+        {% endif %}
 
-    {% block content %} {% endblock content %}
+    </header>
+
+    <section class="section">
+      <div class="container" style="display: flex; justify-content: center;">
+        <h2 class="title has-text-white">Sign up and create your own alerts</h2>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-4-desktop">
+            <div class="card card-equal-height" >
+              <div class="card-image">
+                <figure class="image is-square">
+                  <img src="{{ url_for('static', filename='images/bell_notify.jpg') }}" alt="Loading...">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title has-text-centered">Create Time Events</p>
+              </div>
+              <div class="card-footer">
+                <p class="card-footer-item">
+                  <button class="button is-outlined is-primary is-pulled-right is-small"> Notifier Application </button>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="column is-4-desktop">
+            <div class="card card-equal-height" >
+              <div class="card-image">
+                <figure class="image is-square">
+                  <img src="{{ url_for('static', filename='images/bell_notify.jpg') }}" alt="Loading...">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title has-text-centered">Create Time Events</p>
+              </div>
+              <div class="card-footer">
+                <p class="card-footer-item">
+                  <button class="button is-outlined is-primary is-pulled-right is-small"> Notifier Application </button>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="column is-4-desktop">
+            <div class="card card-equal-height" >
+              <div class="card-image">
+                <figure class="image is-square">
+                  <img src="{{ url_for('static', filename='images/bell_notify.jpg') }}" alt="Loading...">
+                </figure>
+              </div>
+              <div class="card-content">
+                <p class="title has-text-centered">Create Time Events</p>
+              </div>
+              <div class="card-footer">
+                <p class="card-footer-item">
+                  <button class="button is-outlined is-primary is-pulled-right is-small"> Notifier Application </button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+
 </body>
+</html>

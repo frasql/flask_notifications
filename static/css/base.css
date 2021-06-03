@@ -1,10 +1,29 @@
-html, body {
-    height: 100%;
-    width: 100%;
-    padding: 0;
+html{ 
+    background: url(../images/landing_bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    }
+
+
+.navbar {
+    background-color:#8B0000;
+    border: 2px solid black;
 }
 
 .nav-icon {
     font-size: 3em; 
-    color: rgb(191, 255, 71);
+    color: white
+}
+
+.nav-item-text {
+    color: white;
+}
+
+#flash_messages {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid grey;
 }

@@ -32,7 +32,6 @@
           </a>
     
           <a class="navbar-item">
-            Documentation
           </a>
     
           <div class="navbar-item has-dropdown is-hoverable">
@@ -72,6 +71,11 @@
         </div>
       </div>
     </nav>
+    <div class="container" style="width:100%;">
+      {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class="alert-{{category}} flash-container">Message: {{ message }}</div>
+      {% endfor %}
+      </div>
   </header>
 
     <section class="section">

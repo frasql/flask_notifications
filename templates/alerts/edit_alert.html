@@ -30,14 +30,13 @@
     
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="{{ url_for('users.homepage') }}">
+          <a class="navbar-item" href="{{ url_for('main_root.landing_page') }}">
             Home
           </a>
     
-          <a class="navbar-item">
-            Documentation
+          <a class="navbar-item" href="{{ url_for('users.homepage') }}">
+            Profile
           </a>
-    
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
               More
@@ -72,6 +71,11 @@
         </div>
       </div>
     </nav>
+    <div class="container" style="width:100%;">
+      {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class="alert-{{category}} flash-container">Message: {{ message }}</div>
+      {% endfor %}
+    </div>
   </header>
   <section class="section">
       <form class="form" method="POST" action="{{ url_for('alerts.new') }}">

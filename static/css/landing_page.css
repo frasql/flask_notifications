@@ -1,0 +1,27 @@
+.card-equal-height {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 25px;
+    border: 2px solid black;
+    padding: 20px;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+}
+
+.card-equal-height:hover {
+    top: -10px;
+}
+  
+.card-equal-height
+.card-footer {
+    margin-top: auto;
+    height: 100%;
+}
+
+.card-equal-height
+.card-content {
+    flex-grow:1;
+}
+

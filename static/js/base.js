@@ -1,3 +1,4 @@
+/*
 // mobile menu
 const burgerIcon = document.querySelector('#burger');
 const navbarMenu = document.querySelector('#nav-links');
@@ -28,3 +29,10 @@ tabs.forEach((tab) => {
 
     })
 })
+*/
+close_flash = document.querySelector("#close_flash");
+if (close_flash) {
+    close_flash.addEventListener("click", () => {
+        close_flash.parentElement.remove()
+    })
+}

@@ -29,14 +29,13 @@
     
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="{{ url_for('users.homepage') }}">
+          <a class="navbar-item" href="{{ url_for('main_root.landing_page') }}">
             Home
           </a>
     
-          <a class="navbar-item">
-            Documentation
+          <a class="navbar-item" href="{{ url_for('users.homepage') }}">
+            Profile
           </a>
-    
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
               More
@@ -102,7 +101,6 @@
                       </div>
                     </div>
                     <footer class="card-footer">
-                      <a href="#" class="card-footer-item">Save</a>
                       <a class="card-footer-item edit_alert_buttons" id="{{alert._id}}">Edit</a>
                       <a href="{{ url_for('alerts.delete_alert', alert_id=alert._id) }}" onclick="return confirm('Are you sure?')" class="card-footer-item">Delete</a>
                     </footer>
