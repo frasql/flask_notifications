@@ -29,16 +29,16 @@
           <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
               <a class="navbar-item" href="{{ url_for('main_root.landing_page') }}">
-                <span class="nav-item-text">Home</span>
+                <span class="navbar-item-text">Home</span>
               </a>
         
               <a class="navbar-item" href="{{ url_for('users.homepage') }}">
-                <span class="nav-item-text">Profile</span>
+                <span class="navbar-item-text">Profile</span>
               </a>
         
               <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
-                  <span class="nav-item-text">More</span>
+                  <span class="navbar-item-text">More</span>
                 </a>
         
                 <div class="navbar-dropdown has-text-white" style="color: white;" >
@@ -79,7 +79,7 @@
         {% if get_flashed_messages() %}
         <div class="container" style="width:100%;" id="flash_messages">
           {% for category, message in get_flashed_messages(with_categories=True) %}
-            <div class="alert-{{category}} flash-container">Message: {{ message }}</div>
+            <div style="color: white;" class="alert-{{category}} flash-container">Message: {{ message }}</div>
             <a class="close" id="close_flash">×</a>
           {% endfor %}
           </div>
@@ -90,7 +90,7 @@
 
     <section class="section">
       <div class="container" style="display: flex; justify-content: center;">
-        <h2 class="title has-text-white">Sign up and create your own alerts</h2>
+        <h2 class="title has-text-white">Sign up and create your own events</h2>
       </div>
     </section>
 
@@ -109,7 +109,7 @@
               </div>
               <div class="card-footer">
                 <p class="card-footer-item">
-                  <button class="button is-outlined is-primary is-pulled-right is-small"> Notifier Application </button>
+                  <a href="{{ url_for('alerts.index') }}" class="button is-outlined is-primary is-pulled-right is-small"> Notifier Application </a>
                 </p>
               </div>
             </div>
@@ -118,15 +118,15 @@
             <div class="card card-equal-height" >
               <div class="card-image">
                 <figure class="image is-square">
-                  <img src="{{ url_for('static', filename='images/bell_notify.jpg') }}" alt="Loading...">
+                  <img src="{{ url_for('static', filename='images/project_icon.jpg') }}" alt="Loading...">
                 </figure>
               </div>
               <div class="card-content">
-                <p class="title has-text-centered">Create Time Events</p>
+                <p class="title has-text-centered">Create Project Events</p>
               </div>
               <div class="card-footer">
                 <p class="card-footer-item">
-                  <button class="button is-outlined is-primary is-pulled-right is-small"> Notifier Application </button>
+                  <a href="{{ url_for('projects.index') }}" class="button is-outlined is-primary is-pulled-right is-small"> Projects Application </a>
                 </p>
               </div>
             </div>

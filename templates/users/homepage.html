@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/alerts/alert.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/users/homepage.css') }}">
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   
@@ -30,26 +30,26 @@
     
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="{{ url_for('main_root.landing_page') }}">
+          <a class="navbar-item navbar-item-text" href="{{ url_for('main_root.landing_page') }}">
             Home
           </a>
     
-          <a class="navbar-item" href="{{ url_for('users.homepage') }}">
+          <a class="navbar-item  navbar-item-text" href="{{ url_for('users.homepage') }}">
             Profile
           </a>
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
+            <a class="navbar-link  navbar-item-text">
               More
             </a>
     
-            <div class="navbar-dropdown">
-              <a class="navbar-item">
+            <div class="navbar-dropdown" style="color: black;">
+              <a class="navbar-item " >
                 About
               </a>
-              <a class="navbar-item">
+              <a class="navbar-item ">
                 Jobs
               </a>
-              <a class="navbar-item">
+              <a class="navbar-item ">
                 Contact
               </a>
               <hr class="navbar-divider">
@@ -79,32 +79,86 @@
     
   </header>
 
-  <section class="section">
-    <div class="container" style="display: flex; justify-content: center;">
-      <h1>Welcome {{ email | capitalize }}</h1>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container" style="display: flex; justify-content: center;">
-      <div class="columns">
-          <div class="column is-6-desktop">
-            <h2 class="title">Create an alert</h2>
-            <a class="button" href="{{ url_for('alerts.new_alert') }}">create alert</a>
+  <section class="main-content columns is-fullheight">
+  
+    <aside class="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile" style="border: 3px solid lightgrey;">
+      <p class="menu-label is-hidden-touch title is-large" style="color: white;">Welcome {{email | capitalize}}</p>
+      <ul class="menu-list">
+        <li>
+          <a href="{{ url_for('users.homepage') }}" class="" style="color: white;">
+            <span class="icon"><i class="fa fa-home"></i></span> Profile
+          </a>
+        </li>
+        <li>
+          <a id="links" href="#" class="" style="color: white;">
+            <span class="icon"><i class="fa fa-table"></i></span> Options
+          </a>
+  
+          <ul id="link-dropdown" class="is-hidden">
+            <li>
+              <a id="link1" style="color: white;" href="{{ url_for('alerts.index') }}">
+                <span class="icon is-small"><i class="fa fa-link"></i></span> Alerts
+              </a >
+            </li>
+            <li>
+              <a id="link2" href="{{ url_for('projects.index') }}" style="color: white;">
+                <span class="icon is-small"><i class="fa fa-link"></i></span> Projects
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="" style="color: white;">
+            <span class="icon"><i class="fa fa-info"></i></span> About
+          </a>
+        </li>
+      </ul>
+    </aside>
+  
+    <div class="container column is-10">
+      <div class="section">
+  
+        <div class="card">
+          <div class="card-header">
           </div>
-          <div class="column is-6-desktop">
-            <h2 class="title">Show alerts</h2>
-            <a class="button" href="{{ url_for('alerts.index') }}">show alerts</a>
+          <div class="card-content">
+            <div class="content has-text-centered" >
+              <p class="card-header-title">Total Alerts Created: </p>
+              <p>{{alerts_number}}</p>
+              <a class="button" href="{{ url_for('alerts.new_alert') }}">New Alert</a>
+            </div>
           </div>
         </div>
+        <br />
+        
+        <div class="card">
+          <div class="card-header">
+          </div>
+          <div class="card-content">
+            <div class="content has-text-centered" >
+              <p class="card-header-title">Total Projects Created: </p>
+              <p>{{projects_number}}</p>
+              <a class="button" href="{{ url_for('projects.new_project') }}">New Project</a>
+            </div>
+          </div>
+        </div>
+        <br />   
+      </div>
     </div>
+    
   </section>
+  
+  <footer class="footer is-hidden">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>Hello</p>
+      </div>
+    </div>
+  </footer>
+      
+  </div>
 
-
-  <section class="section">
-    {{alerts}}
-  </section>
-
+  <script src="{{ url_for('static', filename='js/homeuser.js') }}"></script>
     
 </body>
 </html>

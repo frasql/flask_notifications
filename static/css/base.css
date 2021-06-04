@@ -14,11 +14,23 @@ html{
 
 .nav-icon {
     font-size: 3em; 
-    color: white
+    color: white;
 }
 
-.nav-item-text {
+.nav-icon :hover {
+    color: blue;
+}
+
+.navbar-item:hover {
+    color: blue;
+}
+
+.navbar-item-text {
     color: white;
+}
+
+.navbar-item-text:hover {
+    color: blue;
 }
 
 #flash_messages {
@@ -27,3 +39,39 @@ html{
     justify-content: center;
     border: 1px solid grey;
 }
+
+.label {
+    color: white;
+}
+
+
+.card-properties {
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    width: inherit;
+}
+
+.card {
+    margin-bottom: 4em;
+}
+
+/*
+body {
+    background: linear-gradient(-45deg, #ee7752, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+*/

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <title>Activities</title>
+</head>
+<body>
+  <header>
+    <nav style="background-color: #8B0000;" class="navbar is-fixed-top has-shadow is-white" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <span class="nav-icon">
+            <i class="fas fa-bell"></i>
+          </span>            
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="burger">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+    
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="{{ url_for('main_root.landing_page') }}">
+            Home
+          </a>
+    
+          <a class="navbar-item" href="{{ url_for('users.homepage') }}">
+            Profile
+          </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More
+            </a>
+    
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                About
+              </a>
+              <a class="navbar-item">
+                Jobs
+              </a>
+              <a class="navbar-item">
+                Contact
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                Report an issue
+              </a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-danger" href="{{ url_for('users.logout') }}">
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container" style="width:100%;">
+      {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class="alert-{{category}} flash-container">Message: {{ message }}</div>
+      {% endfor %}
+      </div>
+  </header>  
+  <section class="section">
+      <div class="container">
+            {% if activities %}
+              {% for act in activities %}
+                  <div class="card" style="margin-top: 3em;">
+                    <header class="card-header">
+                      <p class="card-header-title">
+                        {{ act.name }}
+                      </p>
+                      <button class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                          <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                      </button>
+                    </header>
+                    <div class="card-content">
+                      <div class="content">
+                        {{ act.description }}
+                        <br>
+                        {{ act.order }}
+                        <br>
+                        {{act.time_to_complete}}
+                      </div>
+                        {{trm}}
+                    </div>
+                    <footer class="card-footer">
+                      <a class="card-footer-item edit_alert_buttons">Edit</a>
+                      <a href="#" onclick="return confirm('Are you sure?')" class="card-footer-item">Delete</a>
+                    </footer>
+                  </div>
+              {% endfor %}
+            {% else %}
+            <section class="section">
+              <div class="container" style="display: flex; justify-content: center; margin-top: 3em;">
+                <h2 class="title has-text-white">This project is empty</h2>
+              </div>
+              <div class="container" style="display: flex; justify-content: center; margin-top: 4em;">
+                <a class="button" href="{{ url_for('projects.index') }}">New Activity</a>
+              </div>
+            </section>
+            {% endif %}
+      </div>
+  </section>
+
+{% if activities %}
+{% for act in activities %}
+  <!-- Modal Insert Patient Materials-->
+<div class="modal" id="#">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modifica Alert</p>
+      <button class="delete close_edit_alert_buttons" id="#" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Content ... -->
+        <div class="container" style="width: auto;">    
+            <form action="#" method="POST">
+                <div class="row">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="field">
+                              <label for="codice_causale">End Time<span class="required">*</span>:</label>
+                              <div class="control">
+                                <input class="input" type="datetime-local" name="end_time" />
+                              </div>
+                            </div>
+                            <div class="control">
+                                <button class="button is-yellow is-rounded" type="submit">Invia</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+      <!-- End content -->
+    </section>
+    <footer class="modal-card-foot">
+    </footer>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+
+</body>
+</html>

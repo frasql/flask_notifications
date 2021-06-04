@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-  
-    <title>Login</title>
+    
+    <title>Notification App</title>
 </head>
 <body>
   <header>
@@ -32,11 +31,9 @@
           <a class="navbar-item" href="{{ url_for('main_root.landing_page') }}">
             Home
           </a>
-    
-          <a class="navbar-item">
-            
+          <a class="navbar-item" href="{{ url_for('users.homepage') }}">
+            Profile
           </a>
-    
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
               More
@@ -63,11 +60,8 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary" href="{{ url_for('users.register') }}">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-link" href="{{ url_for('users.login') }}">
-                Log in
+              <a class="button is-danger" href="{{ url_for('users.logout') }}">
+                Logout
               </a>
             </div>
           </div>
@@ -78,28 +72,30 @@
       {% for category, message in get_flashed_messages(with_categories=True) %}
         <div class="alert-{{category}} flash-container">Message: {{ message }}</div>
       {% endfor %}
-      </div>
-  </header>
-    <section class="section">
-        <div class="container">
-            <form style="color: white;" class="form" method="POST" action="{{ url_for('users.login') }}">
-                <div class="field">
-                    <label class="label">Email</label>
-                    <div class="control">
-                      <input class="input" type="text" name="email">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <label class="label">Password</label>
-                    <div class="control">
-                      <input class="input" type="text" name="password">
-                    </div>
-                  </div>
-                  <button class="button is-grey" type="submit">Invia</button>
-              </form>
-
-        </div>
-    </section>
-    
+    </div>
+  </header>    
+  <section class="section">
+      <form class="form" method="POST" action="{{ url_for('projects.new_project') }}">
+        <div class="field">
+            <label class="label" style="color: white;">Project Name</label>
+            <div class="control">
+              <input class="input" type="text" name="project_name">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" style="color: white;">Description</label>
+            <div class="control">
+              <input class="input" type="text" name="description">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" style="color: white;">Deadline</label>
+            <div class="control">
+              <input class="input" type="number" name="deadline">
+            </div>
+          </div>
+          <button class="button is-grey" type="submit">Invia</button>
+      </form>
+    </section> 
 </body>
 </html>

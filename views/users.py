@@ -1,6 +1,8 @@
 from apputils.utils import Utils
 from flask import Blueprint, session, render_template, redirect, request, url_for
 from models.users.user import User
+from models.alert import Alert
+from models.project import Project
 import models.users.errors as UserErrors
 from models.users.decorators import login_required
 
@@ -13,7 +15,9 @@ user_blueprint = Blueprint("users", __name__)
 def homepage():
     user_email = session["email"]
     email = user_email.split("@")[0]
-    return render_template("users/homepage.html", email=email)
+    alerts_number = len(Alert.find_many_by("user_email", user_email))
+    projects_number = len(Project.find_many_by("user_email", user_email))
+    return render_template("users/homepage.html", email=email, alerts_number=alerts_number, projects_number=projects_number)
 
 @user_blueprint.route("/register/", methods=["GET", "POST"])
 def register():
